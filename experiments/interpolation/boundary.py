@@ -76,7 +76,7 @@ class StarBoundary(Boundary):
 
         points_centered = points.unsqueeze(1) - start  # (n, 1, 2) - (1, m, 2) = (n, m, 2)
 
-        # t_star = dot(p - a, u) / dot(u, u)  -- scale
+        # t_star = dot(p - a, u) / dot(u, u)  -- scale (found via analyzing the right triangle formed with a, p, and p')
         # q_star = a + t_star * u             -- projection of p on the line defined by point a and vector u
         # q      = a + clip(t_star, 0, 1) * u -- closest to p edge points
         scale = (points_centered * direction).sum(dim=2) / (direction * direction).sum(dim=2)  # (n, m),    t_star
